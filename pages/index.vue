@@ -2,67 +2,75 @@
    <div class="p-6">
     <h1 class="text-2xl font-bold mb-6">📊 Statistika sistema</h1>
 
-    <div v-if="homeStore.loading">Učitavanje...</div>
-    <div v-if="homeStore.error" class="text-red-600">{{ homeStore.error }}</div>
-
     <div
       v-if="homeStore.statistics"
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
     >
-      <div
-        class="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
-      >
-        <div class="flex items-center justify-start- gap-2">
-          <div class="text-blue-600 text-3xl mb-2">📁</div>
-          <h2 class="text-lg font-semibold text-gray-700">Projekti</h2>
-        </div>
-        <p class="text-3xl font-bold text-gray-900">{{ homeStore.statistics.projectCount }}</p>
-      </div>
+      <StatCard
+        icon="📁"
+        title="Projekti"
+        :value="homeStore.statistics.projectCount"
+      />
+      
+      <StatCard
+        icon="🏗️"
+        title="Gradilišta"
+        :value="homeStore.statistics.constructionSitesCount"
+      />
 
-      <div
-        class="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
-      >
-        <div class="flex items-center justify-start- gap-2">
-          <div class="text-indigo-600 text-3xl mb-2">🏗️</div>
-          <h2 class="text-lg font-semibold text-gray-700">Gradilišta</h2>
-        </div>
-        <p class="text-3xl font-bold text-gray-900">{{ homeStore.statistics.constructionSitesCount }}</p>
-      </div>
+      <StatCard
+        icon="👥"
+        title="Korisnici"
+        :value="homeStore.statistics.usersCount"
+      />
 
-      <div
-        class="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
-      >
-        <div class="flex items-center justify-start- gap-2">
-          <div class="text-green-600 text-3xl mb-2">👥</div>
-           <h2 class="text-lg font-semibold text-gray-700">Korisnici</h2>
-        </div>
-        <p class="text-3xl font-bold text-gray-900">{{ homeStore.statistics.usersCount }}</p>
-      </div>
+      <StatCard
+        icon="⚙️"
+        title="Aktivni zadaci"
+        :value="homeStore.statistics.activeTasksCount"
+      />
 
-      <div
-        class="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
-      >
-        <div class="flex items-center justify-start- gap-2">
-          <div class="text-yellow-600 text-3xl mb-2">⚙️</div>
-          <h2 class="text-lg font-semibold text-gray-700">Aktivni zadaci</h2>
-        </div>
-        <p class="text-3xl font-bold text-gray-900">{{ homeStore.statistics.activeTasksCount }}</p>
-      </div>
+      <StatCard
+        icon="✅"
+        title="Završeni zadaci"
+        :value="homeStore.statistics.completedTasksCount"
+      />
+    </div>
 
-      <div
-        class="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 hover:shadow-lg"
-      >
-        <div class="flex items-center justify-start- gap-2">
-          <div class="text-purple-600 text-3xl mb-2">✅</div>
-          <h2 class="text-lg font-semibold text-gray-700">Završeni zadaci</h2>
-        </div>
-        <p class="text-3xl font-bold text-gray-900">{{ homeStore.statistics.completedTasksCount }}</p>
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold mb-6">📝 Moji zadaci</h2>
+      <div v-if="homeStore.userTasks.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <UserTaskCard
+          v-for="task in homeStore.userTasks"
+          :key="task.userTaskId"
+         :task="task"
+        />
+      </div>
+      <div v-else class="text-gray-500">
+        Nema dostupnih zadataka.
       </div>
     </div>
+
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold mb-6">🏗️ Moji projekti</h2>
+      <div v-if="homeStore.userProjects.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ProjectCard
+          v-for="project in homeStore.userProjects"
+          :key="project.projectId"
+          :project="project"
+        />
+      </div>
+      <div v-else class="text-gray-500">
+        Nema dostupnih projekata.
+      </div>
+    </div>
+    
   </div>
 </template>
 
 <script setup>
+import { StatCard } from '#components'
+import { UserTaskCard } from '#components'
 import { useHomeStore } from '@/stores/home'
 
 const homeStore = useHomeStore()
@@ -70,6 +78,14 @@ const homeStore = useHomeStore()
 onMounted(() => {
   if (!homeStore.statistics) {
     homeStore.loadStatistics()
+  }
+
+  if (!homeStore.userTasks.length) {
+    homeStore.loadUserTasks(1, 4)
+  }
+
+  if (!homeStore.userProjects.length) {
+    homeStore.loadUserProjects(1, 4)
   }
 })
 </script>
