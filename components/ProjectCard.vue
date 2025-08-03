@@ -10,7 +10,7 @@
     </div>
     <p class="text-gray-600 text-sm line-clamp-2">{{ project.note }}</p>
     <div class="text-sm text-gray-500 mt-auto">
-      <span>📅 {{ formatDate(project.startDate) }} – {{ formatDate(project.endDate) }}</span>
+      <span>{{ formatDate(project.startDate) }} – {{ formatDate(project.endDate) }}</span>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
   >
     <div class="flex justify-between items-start">
       <h3 class="text-lg font-semibold text-gray-800">
-        📁 {{ task.projectTask.projectDetails.name }}
+        {{ task.projectTask.projectDetails.name }}
       </h3>
 
       <span
@@ -23,7 +23,7 @@
     </div>
 
     <div v-if="task.note" class="text-sm italic text-gray-500">
-      📝 {{ task.note }}
+      {{ task.note }}
     </div>
 
     <NuxtLink
