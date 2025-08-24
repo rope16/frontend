@@ -1,6 +1,7 @@
 <template>
   <div
     class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.01] flex flex-col gap-2"
+    @click="goToProjectTask(task.projectTask.projectTaskId)"
   >
     <div class="flex justify-between items-start">
       <h3 class="text-lg font-semibold text-gray-800">
@@ -11,7 +12,7 @@
         class="text-xs font-medium px-2 py-1 rounded-full"
         :class="statusBadgeClass(task.projectTask.status)"
       >
-        {{ task.projectTask.status }}
+        {{ translateStatus(task.projectTask.status) }}
       </span>
     </div>
 
@@ -25,18 +26,13 @@
     <div v-if="task.note" class="text-sm italic text-gray-500">
       {{ task.note }}
     </div>
-
-    <NuxtLink
-      :to="`/zadaci/${task.projectTask.projectTaskId}`"
-      class="mt-2 text-sm text-blue-600 hover:underline self-start"
-    >
-      Detalji zadatka →
-    </NuxtLink>
   </div>
 </template>
 
 <script setup>
 import dayjs from 'dayjs'
+import { useNavigation } from '#imports'
+import { translateStatus } from '#imports'
 
 defineProps({
   task: {
@@ -44,6 +40,8 @@ defineProps({
     required: true
   }
 })
+
+const { goToProjectTaskPage } = useNavigation()
 
 function formatDate(date) {
   return dayjs(date).format('DD.MM.YYYY')
@@ -66,5 +64,9 @@ function statusBadgeClass(status) {
     default:
       return 'bg-gray-100 text-gray-700'
   }
+}
+
+const goToProjectTask = (taskId) => {
+  goToProjectTaskPage(taskId)
 }
 </script>

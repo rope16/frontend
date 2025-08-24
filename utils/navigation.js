@@ -18,7 +18,24 @@ export function useNavigation() {
 
   const goToProject = (projectId) => {
     if (!projectId) return
-    router.push({ name: 'project-id', params: { projectId: projectId } })
+    router.push({ name: 'project-projectId', params: { projectId: projectId } })
+  }
+
+  const goToProjectsPage = () => {
+    router.push({ name: 'projects' })
+  }
+
+  const goToUsersPage = () => {
+    router.push({ name: 'users' })
+  }
+
+  const goToProjectTaskPage = (projectTaskId) => {
+    if (!projectTaskId) return
+    router.push({ name: 'projectTask-projectTaskId', params: { projectTaskId: projectTaskId } })
+  }
+
+  const goToProjectTasksPage = () => {
+    router.push({ name: 'projectTasks' })
   }
 
   return {
@@ -26,5 +43,9 @@ export function useNavigation() {
     goToHome,
     goToLogin,
     goToProject,
+    goToProjectsPage,
+    goToUsersPage,
+    goToProjectTaskPage,
+    goToProjectTasksPage
   }
 }

@@ -1,12 +1,13 @@
 <template>
   <div
-    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 flex flex-col gap-2"
+    class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 flex flex-col gap-2 cursor-pointer"
+    @click="goToProjectPage(project.projectId)"
   >
     <div class="flex justify-between items-center mb-2">
       <h2 class="text-xl font-semibold text-gray-800 truncate">
         {{ project.name }}
       </h2>
-      <span :class="statusBadgeClass">{{ project.status }}</span>
+      <span :class="statusBadgeClass">{{ translateStatus(project.status) }}</span>
     </div>
     <p class="text-gray-600 text-sm line-clamp-2">{{ project.note }}</p>
     <div class="text-sm text-gray-500 mt-auto">
@@ -18,10 +19,14 @@
 <script setup>
 import { computed } from 'vue'
 import dayjs from 'dayjs'
+import { useNavigation } from '#imports'
+import { translateStatus } from '#imports'
 
 const props = defineProps({
   project: Object,
 })
+
+const { goToProject } = useNavigation()
 
 const formatDate = (date) => dayjs(date).format('DD.MM.YYYY')
 
@@ -40,6 +45,10 @@ const statusBadgeClass = computed(() => {
       return `${base} bg-gray-100 text-gray-700`
   }
 })
+
+const goToProjectPage = (projectId) => {
+  goToProject(projectId)
+}
 </script>
 
 <style scoped>

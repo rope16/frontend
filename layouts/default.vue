@@ -1,25 +1,24 @@
 <template>
   <div class="min-h-screen flex bg-gray-50 text-gray-800">
     <!-- Sidebar (desktop) -->
-    <aside class="bg-white w-72 hidden md:flex flex-col border-r shadow-sm">
-      <!-- Gornji dio: Logo + Linkovi (skrolabilni) -->
-      <div class="flex-1 overflow-auto">
-        <!-- Logo -->
+    <aside class="bg-white w-72 hidden md:flex flex-col justify-between h-screen border-r shadow-sm">
+      <!-- Gornji: Logo + Linkovi -->
+      <div class="overflow-auto">
         <div class="py-2 flex items-center justify-center">
           <img src="/images/logo4.jpg" alt="Logo" class="w-64 h-14" />
         </div>
 
-        <!-- Navigacija -->
         <nav class="flex flex-col gap-3 px-6 py-4">
           <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">🏠 Početna</NuxtLink>
-          <NuxtLink to="/projekti" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
-          <NuxtLink to="/zadaci" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
-          <NuxtLink to="/korisnici" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
+          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
+          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
+          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
+          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">🌐 Gradilišta</NuxtLink>
         </nav>
       </div>
 
-      <!-- Donji dio: Logout dugme -->
-      <div class="px-6 py-4">
+      <!-- Donji Logout uvijek pri dnu -->
+      <div class="px-6 py-4 border-t">
         <button @click="logout" class="w-full text-left">🚪 Odjavi se</button>
       </div>
     </aside>
@@ -52,9 +51,10 @@
         <!-- Linkovi -->
         <nav class="flex flex-col gap-3 px-6 py-4 flex-1">
           <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">🏠 Početna</NuxtLink>
-          <NuxtLink to="/projekti" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
-          <NuxtLink to="/zadaci" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
-          <NuxtLink to="/korisnici" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
+          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
+          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
+          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
+          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">🌐 Gradilišta</NuxtLink>
         </nav>
 
         <!-- Logout -->
@@ -65,7 +65,7 @@
     </transition>
 
     <!-- Glavni sadržaj -->
-    <div class="flex flex-col flex-1 min-h-screen">
+    <div class="flex flex-col flex-1 h-screen overflow-y-auto">
       <!-- Header -->
       <header class="flex justify-between items-center p-4 md:px-4 pt-4 pb-4 border-b md:border-none bg-gray-50">
         <div class="flex items-center gap-4">
@@ -113,7 +113,7 @@ import { useNavigation } from '@/utils/navigation'
 const auth = useAuthStore()
 const sidebarOpen = ref(false)
 const router = useRouter()
-const { goToUserProfile } = useNavigation()
+const { goToUserProfile, goToProjectsPage } = useNavigation()
 
 const toggleSidebar = () => {
   sidebarOpen.value = !sidebarOpen.value
@@ -127,10 +127,13 @@ const logout = () => {
 const navigateToProfile = (userId) => {
   goToUserProfile(userId)
 }
+
+const navigateToProjectsPage = () => {
+  goToProjectsPage()
+}
 </script>
 
 <style scoped>
-/* Prevent transition from flashing sidebar on page load */
 #sidebar {
   z-index: 20;
 }

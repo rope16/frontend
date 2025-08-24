@@ -118,7 +118,7 @@ const save = async () => {
   validateAll()
   if (!isFormValid.value) return
 
-  await profileStore.updateUserProfile(props.profile.id, localProfile.value)
+  await profileStore.updateUserProfile(props.profile.userId, localProfile.value)
   emit('close')
 }
 </script>
@@ -131,9 +131,9 @@ const save = async () => {
   transition: border 0.2s, box-shadow 0.2s;
 }
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed;
 }
 .btn-secondary {
-  @apply bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded;
+  @apply bg-gray-300 hover:bg-gray-400 text-black px-4 py-2;
 }
 </style>

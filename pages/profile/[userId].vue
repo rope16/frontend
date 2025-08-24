@@ -66,7 +66,7 @@ import { useProfileStore } from '@/stores/profile'
 import { useAuthStore } from '@/stores/auth'
 import RoleBadge from '~/components/RoleBadge.vue'
 import Avatar from '~/components/Avatar.vue'
-import EditProfileModal from '~/components/EditProfileModal.vue'
+import EditProfileModal from '~/components/modals/EditProfileModal.vue'
 
 const route = useRoute()
 const profileStore = useProfileStore()
