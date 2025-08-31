@@ -9,17 +9,17 @@
         </div>
 
         <nav class="flex flex-col gap-3 px-6 py-4">
-          <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">🏠 Početna</NuxtLink>
-          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
-          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
-          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
-          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">🌐 Gradilišta</NuxtLink>
+          <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">Početna</NuxtLink>
+          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">Projekti</NuxtLink>
+          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">Zadaci</NuxtLink>
+          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">Korisnici</NuxtLink>
+          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">Gradilišta</NuxtLink>
         </nav>
       </div>
 
       <!-- Donji Logout uvijek pri dnu -->
       <div class="px-6 py-4 border-t">
-        <button @click="logout" class="w-full text-left">🚪 Odjavi se</button>
+        <button @click="logout" class="w-full text-left">Odjavi se</button>
       </div>
     </aside>
 
@@ -50,16 +50,16 @@
 
         <!-- Linkovi -->
         <nav class="flex flex-col gap-3 px-6 py-4 flex-1">
-          <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">🏠 Početna</NuxtLink>
-          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">📁 Projekti</NuxtLink>
-          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">📝 Zadaci</NuxtLink>
-          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">👥 Korisnici</NuxtLink>
-          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">🌐 Gradilišta</NuxtLink>
+          <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">Početna</NuxtLink>
+          <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">Projekti</NuxtLink>
+          <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">Zadaci</NuxtLink>
+          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">Korisnici</NuxtLink>
+          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">Gradilišta</NuxtLink>
         </nav>
 
         <!-- Logout -->
         <div class="px-6 py-4 border-t">
-          <button @click="logout" class="w-full text-left">🚪 Odjavi se</button>
+          <button @click="logout" class="w-full text-left">Odjavi se</button>
         </div>
       </aside>
     </transition>
