@@ -12,8 +12,8 @@
           <NuxtLink to="/" class="hover:text-blue-600 flex items-center gap-2">Početna</NuxtLink>
           <NuxtLink to="/projects" class="hover:text-blue-600 flex items-center gap-2">Projekti</NuxtLink>
           <NuxtLink to="/projectTasks" class="hover:text-blue-600 flex items-center gap-2">Zadaci</NuxtLink>
-          <NuxtLink to="/users" class="hover:text-blue-600 flex items-center gap-2">Korisnici</NuxtLink>
-          <NuxtLink to="/sites" class="hover:text-blue-600 flex items-center gap-2">Gradilišta</NuxtLink>
+          <NuxtLink v-if="isAdminUser" to="/users" class="hover:text-blue-600 flex items-center gap-2">Korisnici</NuxtLink>
+          <NuxtLink v-if="isAdminUser" to="/sites" class="hover:text-blue-600 flex items-center gap-2">Gradilišta</NuxtLink>
         </nav>
       </div>
 
@@ -109,6 +109,7 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useNavigation } from '@/utils/navigation'
+import { isAdmin } from '#imports'
 
 const auth = useAuthStore()
 const sidebarOpen = ref(false)
@@ -118,6 +119,8 @@ const { goToUserProfile, goToProjectsPage } = useNavigation()
 const toggleSidebar = () => {
   sidebarOpen.value = !sidebarOpen.value
 }
+
+const isAdminUser = isAdmin()
 
 const logout = () => {
   auth.logout()

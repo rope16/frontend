@@ -149,7 +149,7 @@ const statuses = [
   { label: 'Nije započeto', value: 'NotStarted' },
   { label: 'U toku', value: 'InProgress' },
   { label: 'Završeno', value: 'Completed' },
-  { label: 'Otkaženo', value: 'Cancelled' }
+  { label: 'Otkazano', value: 'Cancelled' }
 ]
 
 const formatDate = (dateStr) => new Date(dateStr).toLocaleDateString()

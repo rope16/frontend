@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { loginUser } from "../composables/auth";
+import { decodeJwtPayload } from "#imports";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -20,8 +21,7 @@ export const useAuthStore = defineStore('auth', {
         const data = await loginUser(email, password);
         this.token = data;
 
-        const payloadBase64 = data.split('.')[1]
-        const decodedPayload = JSON.parse(atob(payloadBase64))
+        const decodedPayload = decodeJwtPayload(data)
 
         console.log('Decoded Payload:', decodedPayload);
 

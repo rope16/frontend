@@ -148,7 +148,7 @@ const taskStatusOptions = [
   { label: 'Nije započeto', value: 'NotStarted' },
   { label: 'U toku', value: 'InProgress' },
   { label: 'Završeno', value: 'Completed' },
-  { label: 'Otkaženo', value: 'Cancelled' }
+  { label: 'Otkazano', value: 'Cancelled' }
 ]
 
 onMounted(async () => {
